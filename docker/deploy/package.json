@@ -1,0 +1,14 @@
+{
+  "name": "docker-simple-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "connect": "ssh -i \"example-1.pem\" ec2-user@ec2-54-175-190-105.compute-1.amazonaws.com"
+  },
+  "author": "Maximilian Schwarzmüller / Academind GmbH",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

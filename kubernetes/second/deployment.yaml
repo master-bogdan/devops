@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: deployment
+metadata:
+  name: story-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: story
+  template: 
+    metadata:
+      labels:
+        app: story
+    spec:
+      containers:
+        - name: story
+          image: masterbogdan/story:latest
+          env:
+            - name: STORY_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  name: data-store-env
+                  key: folder
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          persistentVolumeClaim:
+            claimName: host-pvc
+          # hostPath:
+          #   path: /data
+          #   type: DirectoryOrCreate
